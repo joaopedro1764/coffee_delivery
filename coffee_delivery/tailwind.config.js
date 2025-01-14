@@ -29,7 +29,7 @@ export default {
         roboto: ['Roboto', 'sans-serif'],
       },
       fontSize: {
-        'title-xl': ['48px', { lineHeight: '130%', fontWeight: '800' }],
+        'title-xl': ['48px', { lineHeight: '130%', fontWeight: '800', fontFamily:"baloo" }],
         'title-l': ['32px', { lineHeight: '130%', fontWeight: '800' }],
         'title-m': ['24px', { lineHeight: '130%', fontWeight: '800' }],
         'title-s': ['20px', { lineHeight: '130%', fontWeight: '700' }],
