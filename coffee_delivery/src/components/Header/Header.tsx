@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import logoCoffee from "../../assets/Logo-Coffee.svg";
 import { MapPin, ShoppingCart } from "phosphor-react";
 export function Header() {
@@ -9,9 +10,11 @@ export function Header() {
           <MapPin weight="fill" className="text-purple" size={24} />
           Porto Alegre, RS
         </span>
-        <span className="bg-yellow-light px-3 py-2 rounded-md cursor-pointer">
+        
+          <NavLink className="flex bg-yellow-light px-3 py-2 rounded-md cursor-pointer" to="/checkout">
           <ShoppingCart className="text-yellow-dark" size={24} weight="fill" />
-        </span>
+          </NavLink>
+    
       </div>
     </header>
   );

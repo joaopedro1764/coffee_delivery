@@ -1,7 +1,12 @@
 import { ShoppingCartSimple, Plus, Minus } from "phosphor-react";
 import coffeeItem from "../../assets/CoffeeItem.svg";
+import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { CoffeeContext } from "../../context/CoffeeContext";
+
 
 interface CardProps {
+  id:string;
   name: string;
   type: string[];
   legend: string;
@@ -9,6 +14,8 @@ interface CardProps {
 }
 
 export function Card(props: CardProps) {
+  const { handleAddCoffee } = useContext(CoffeeContext);
+
   return (
     <div className="w-[300px] flex flex-col items-center bg-base-card rounded-bl-3xl rounded-tr-3xl rounded-tl-xl rounded-br-xl mt-20 px-5 py-3">
       <img className="-top-9 relative" src={coffeeItem} />
@@ -21,7 +28,9 @@ export function Card(props: CardProps) {
           );
         })}
       </div>
-      <h1 className="text-title-s text-base-subtitle font-baloo mb-3">{props.name}</h1>
+      <h1 className="text-title-s text-base-subtitle font-baloo mb-3">
+        {props.name}
+      </h1>
       <p className="text-text-s text-base-label">{props.legend}</p>
       <div className="w-full flex gap-x-8 justify-between items-end mt-10">
         <div className="flex items-end gap-x-1">
@@ -38,13 +47,17 @@ export function Card(props: CardProps) {
               <Plus className="text-purple" size={20} />
             </button>
           </div>
-          <span className="bg-purple-dark float-right px-3 py-2 rounded-md">
+          <NavLink
+            onClick={() => handleAddCoffee(props)}
+            className="bg-purple-dark float-right px-3 py-2 rounded-md"
+            to="/checkout"
+          >
             <ShoppingCartSimple
               className="text-white cursor-pointer"
               size={24}
               weight="fill"
             />
-          </span>
+          </NavLink>
         </div>
       </div>
     </div>
