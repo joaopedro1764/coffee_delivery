@@ -1,13 +1,13 @@
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./Router";
-import {  CoffeeContextProvider } from "./context/CoffeeContext";
+import {  CartContextProvider } from "./context/CartContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <CoffeeContextProvider>
+      <CartContextProvider>
         <Router />
-      </CoffeeContextProvider>
+      </CartContextProvider>
     </BrowserRouter>
   );
 }

@@ -1,21 +1,84 @@
-import { CoffeeProps } from "./reducer";
+import { NavigateFunction } from "react-router-dom";
+import { Item } from "./reducer";
+import { OrderInfo } from "../pages/Cart";
 
 export enum ActionTypes {
-  ADD_NEW_ORDER_COFFEE = "ADD_NEW_ORDER_COFFEE",
-  REMOVE_COFFEE = "REMOVE_COFFEE",
-  DECREASE_QUANTITY_COFFEE = "DECREASE_QUANTITY_COFFEE",
+  ADD_ITEM = "ADD_ITEM",
+  REMOVE_ITEM = "REMOVE_ITEM",
+  INCREMENT_ITEM_QUANTITY = "INCREMENT_ITEM_QUANTITY",
+  DECREMENT_ITEM_QUANTITY = "DECREMENT_ITEM_QUANTITY",
+  CHECKOUT_CART = "CHECKOUT_CART",
 }
 
-export function addNewCoffeeOrder(newCoffe: CoffeeProps) {
+export type Actions =
+  | {
+      type: ActionTypes.ADD_ITEM;
+      payload: {
+        item: Item;
+      };
+    }
+  | {
+      type:
+        | ActionTypes.DECREMENT_ITEM_QUANTITY
+        | ActionTypes.INCREMENT_ITEM_QUANTITY
+        | ActionTypes.REMOVE_ITEM;
+      payload: {
+        itemId: Item["id"];
+      };
+    }
+  | {
+      type: ActionTypes.CHECKOUT_CART;
+      payload: {
+        order: OrderInfo;
+        callback: NavigateFunction;
+      };
+    };
+
+export function addItemAction(item: Item) {
   return {
-    type: ActionTypes.ADD_NEW_ORDER_COFFEE,
-    payload: newCoffe,
-  };
+    type: ActionTypes.ADD_ITEM,
+    payload: {
+      item,
+    },
+  } satisfies Actions;
 }
 
-export function removeCoffee(coffeeRemoveId: string) {
+export function removeItemAction(itemId: Item["id"]) {
   return {
-    type: ActionTypes.REMOVE_COFFEE,
-    payload: coffeeRemoveId,
-  };
+    type: ActionTypes.REMOVE_ITEM,
+    payload: {
+      itemId,
+    },
+  } satisfies Actions;
+}
+
+export function incrementItemQuantityAction(itemId: Item["id"]) {
+  return {
+    type: ActionTypes.INCREMENT_ITEM_QUANTITY,
+    payload: {
+      itemId,
+    },
+  } satisfies Actions;
+}
+
+export function decrementItemQuantityAction(itemId: Item["id"]) {
+  return {
+    type: ActionTypes.DECREMENT_ITEM_QUANTITY,
+    payload: {
+      itemId,
+    },
+  } satisfies Actions;
+}
+
+export function checkoutCartAction(
+  order: OrderInfo,
+  callback: NavigateFunction
+) {
+  return {
+    type: ActionTypes.CHECKOUT_CART,
+    payload: {
+      order,
+      callback,
+    },
+  } satisfies Actions;
 }
